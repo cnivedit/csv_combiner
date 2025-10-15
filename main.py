@@ -1,14 +1,14 @@
-import sys
+import argparse
 import csv
 
 class CsvCombine:
-    def __init__(self, files):
+    def __init__(self, files, output, encoding, final_headers):
         self.files_to_combine = files
         self.combined_data = []
-        self.final_headers = ["Serial", "Name", "Age"]
+        self.final_headers = final_headers
         self.file_headers = set()
-        self.output_dir = "combined.csv"
-        self.encoding = "utf-8"
+        self.output_dir = output
+        self.encoding = encoding
 
     def read_files(self):
         for file in self.files_to_combine:
@@ -31,10 +31,47 @@ class CsvCombine:
         self.read_files()
         self.write_combined_data()
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("No input files provided. Unable to continue.")
-        sys.exit(1)
-    files = sys.argv[1:]
-    csv_combiner = CsvCombine(files)
+def main():
+    parser = argparse.ArgumentParser(
+        description="Combine multiple CSV files with flexible options."
+    )
+
+    parser.add_argument(
+        "files",
+        nargs="+",
+        help="List of input CSV files to combine."
+    )
+
+    parser.add_argument(
+        "-o", "--output",
+        default="combined.csv",
+        help="Output CSV file name (default: combined.csv)"
+    )
+
+    parser.add_argument(
+        "-e", "--encoding",
+        default="utf-8",
+        help="Encoding to use for reading and writing (default: utf-8)"
+    )
+
+    parser.add_argument(
+        "-H", "--headers",
+        default="Serial,Name,Age",
+        help="Comma-separated list of final headers (default: Serial,Name,Age)"
+    )
+
+    args = parser.parse_args()
+
+    final_headers = [h.strip() for h in args.headers.split(",")]
+
+    csv_combiner = CsvCombine(
+        files=args.files,
+        output=args.output,
+        encoding=args.encoding,
+        final_headers=final_headers
+    )
     csv_combiner.combine()
+
+
+if __name__ == "__main__":
+    main()
