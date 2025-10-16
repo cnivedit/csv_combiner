@@ -17,7 +17,7 @@ A simple Python utility for combining user specified columns of multiple CSV fil
 ### Run from the Command Line
 
 ```bash
-python combine_csv.py file1.csv file2.csv [options]
+python combine.py file1.csv file2.csv [options]
 ````
 
 ### Available Options
@@ -35,25 +35,25 @@ python combine_csv.py file1.csv file2.csv [options]
 ### Combine Two CSV Files
 
 ```bash
-python combine_csv.py data1.csv data2.csv
+python combine.py data1.csv data2.csv
 ```
 
 ### Specify a Custom Output File
 
 ```bash
-python combine_csv.py data1.csv data2.csv -o merged_output.csv
+python combine.py data1.csv data2.csv -o merged_output.csv
 ```
 
 ### Use a Different Encoding
 
 ```bash
-python combine_csv.py data1.csv data2.csv -e utf-16
+python combine.py data1.csv data2.csv -e utf-16
 ```
 
 ### Define Custom Headers To Include
 
 ```bash
-python combine_csv.py data1.csv data2.csv -H "Name,Email,Age"
+python combine.py data1.csv data2.csv -H "Name,Email,Age"
 ```
 
 ---
@@ -100,7 +100,7 @@ Diana,24,4,diana@aad.com
 ### Command:
 
 ```bash
-python combine_csv.py file1.csv file2.csv -o result.csv
+python combine.py file1.csv file2.csv -o result.csv
 ```
 
 ### Output (`result.csv`):
