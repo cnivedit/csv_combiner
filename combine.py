@@ -26,13 +26,15 @@ def csv_combiner():
 
     parser.add_argument(
         "-H", "--headers",
-        default="Serial,Name,Age",
+        default=None,
         help="Comma-separated list of final headers (default: Serial,Name,Age)"
     )
 
     args = parser.parse_args()
 
-    final_headers = [h.strip() for h in args.headers.split(",")]
+    final_headers = None
+    if args.headers:
+        final_headers = [h.strip() for h in args.headers.split(",")]
 
     csv_combiner = CsvCombine(
         files=args.files,
@@ -40,6 +42,7 @@ def csv_combiner():
         encoding=args.encoding,
         final_headers=final_headers
     )
+   
     csv_combiner.combine()
 
 

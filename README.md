@@ -26,7 +26,7 @@ python combine.py file1.csv file2.csv [options]
 | ---- | ------------ | ---------------------------------------------------- | ----------------- |
 | `-o` | `--output`   | Output CSV file name                                 | `combined.csv`    |
 | `-e` | `--encoding` | Encoding to use for reading/writing                  | `utf-8`           |
-| `-H` | `--headers`  | Comma-separated list of headers for the final output | `Serial,Name,Age` |
+| `-H` | `--headers`  | Comma-separated list of headers for the final output | `All columns included` |
 
 ---
 
@@ -106,10 +106,10 @@ python combine.py file1.csv file2.csv -o result.csv
 ### Output (`result.csv`):
 
 ```csv
-Serial,Name,Age
+Serial,Name,Age,Email
 1,Alice,22
 2,Bob,23
-3,Charlie,21
-4,Diana,24
+3,Charlie,21,charlie@abc.com
+4,Diana,24,diana@aad.com
 ```
 ---
