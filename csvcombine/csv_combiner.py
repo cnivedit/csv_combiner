@@ -26,6 +26,11 @@ class CsvCombine:
             writer.writeheader()
             writer.writerows(self.combined_data)
     
+    def set_final_headers(self):
+        if not self.final_headers:
+            self.final_headers = set(self.file_headers)
+
     def combine(self):
         self.read_files()
+        self.set_final_headers()
         self.write_combined_data()
