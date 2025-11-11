@@ -23,6 +23,11 @@ def csv_combiner():
         default="utf-8",
         help="Encoding to use for reading and writing (default: utf-8)"
     )
+    parser.add_argument(
+        "-fi", "--fileinfo",
+        action="store_true",
+        help="Append data record source file info."
+    )
 
     parser.add_argument(
         "-H", "--headers",
@@ -40,6 +45,7 @@ def csv_combiner():
         files=args.files,
         output=args.output,
         encoding=args.encoding,
+        append_file_info=args.fileinfo,
         final_headers=final_headers
     )
    
