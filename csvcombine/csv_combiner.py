@@ -1,7 +1,7 @@
 import csv
 
 class CsvCombine:
-    def __init__(self, files, output, encoding, final_headers):
+    def __init__(self, files, output, encoding, append_file_info, final_headers):
         self.files_to_combine = files
         self.combined_data = []
         self.final_headers = final_headers
@@ -11,6 +11,7 @@ class CsvCombine:
         self.differing_headers = set()
         self.output_dir = output
         self.encoding = encoding
+        self.append_file_info = append_file_info
 
     def read_files(self):
         for file in self.files_to_combine:
@@ -20,6 +21,10 @@ class CsvCombine:
                 self.file_headers = self.file_headers.union(header_row)
                 self.file_header_map[file] = set(header_row)
                 rows = list(csv_reader)
+                if self.append_file_info:
+                    self.file_headers = self.file_headers.union({"File_Source"})
+                    for row in rows:
+                        row.update(File_Source = file)
                 self.combined_data.extend(rows)
         print("Headers identified:", ", ".join(self.file_headers))
         print(len(self.combined_data), "records in total.")
