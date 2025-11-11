@@ -8,7 +8,8 @@ A simple Python utility for combining user specified columns of multiple CSV fil
 
 - Combine multiple CSV files with consistent or shuffled headers  
 - Specify output filename and encoding  
-- Choose which headers to include in the final output  
+- Choose which headers to include in the final output
+- Track original source file of data records  
 
 ---
 
@@ -26,6 +27,7 @@ python combine.py file1.csv file2.csv [options]
 | ---- | ------------ | ---------------------------------------------------- | ----------------- |
 | `-o` | `--output`   | Output CSV file name                                 | `combined.csv`    |
 | `-e` | `--encoding` | Encoding to use for reading/writing                  | `utf-8`           |
+| `-fi`| `--fileinfo` | Add column to track origin file of data record      | `False`           |
 | `-H` | `--headers`  | Comma-separated list of headers for the final output | `All columns included` |
 
 ---
@@ -48,6 +50,12 @@ python combine.py data1.csv data2.csv -o merged_output.csv
 
 ```bash
 python combine.py data1.csv data2.csv -e utf-16
+```
+
+### Track original file from which the record originated
+
+```bash
+python combine.py data1.csv data2.csv -fi
 ```
 
 ### Define Custom Headers To Include
